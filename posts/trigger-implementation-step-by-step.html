@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breaking Trigger Implementation Step by Step - SFDC Learning Hub</title>
+    <meta name="description" content="Learn how to design Apex triggers the smart way with a real-world scenario: syncing Account phone changes to related Contact records step by step.">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <i class="fab fa-salesforce"></i>
+                    <span>SFDC<strong>Hub</strong></span>
+                </a>
+                <nav class="nav" id="nav">
+                    <ul class="nav-list">
+                        <li><a href="../index.html" class="nav-link">Home</a></li>
+                        <li class="dropdown">
+                            <a href="../categories.html" class="nav-link">Categories <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="../categories.html#apex">Apex</a></li>
+                                <li><a href="../categories.html#lwc">Lightning Web Components</a></li>
+                                <li><a href="../categories.html#admin">Admin</a></li>
+                                <li><a href="../categories.html#integration">Integration</a></li>
+                                <li><a href="../categories.html#flows">Flows</a></li>
+                                <li><a href="../categories.html#interview">Interview Prep</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="../blog.html" class="nav-link">Blog</a></li>
+                        <li><a href="../about.html" class="nav-link">About</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="search-toggle" id="searchToggle" aria-label="Toggle search"><i class="fas fa-search"></i></button>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+                    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+                </div>
+            </div>
+            <div class="search-bar" id="searchBar">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search tutorials, guides, tips..." id="searchInput">
+                    <button class="search-close" id="searchClose"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Hero -->
+    <section class="post-hero">
+        <div class="container">
+            <div class="post-hero-content">
+                <nav class="breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="../blog.html">Blog</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="../categories.html#apex">Apex</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Breaking Trigger Implementation</span>
+                </nav>
+                <div class="post-meta" style="margin-bottom: 16px;">
+                    <span class="post-category">Apex</span>
+                    <span class="post-read"><i class="far fa-clock"></i> 7 min read</span>
+                </div>
+                <h1>Breaking Trigger Implementation Step by Step &mdash; Trigger Design the Smart Way</h1>
+                <div class="post-author" style="margin-top: 24px;">
+                    <div class="author-avatar">SH</div>
+                    <div class="author-info">
+                        <div class="name">SFDC Hub Team</div>
+                        <div class="date">Published on March 24, 2026</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Post Body -->
+    <section class="post-body">
+
+        <h2>The Scenario</h2>
+        <p>Whenever an Account's <strong>Phone</strong> field is modified, update the related Contact records:</p>
+        <ul>
+            <li><strong>Contact OtherPhone</strong> &rarr; set to the <strong>old</strong> Account phone value</li>
+            <li><strong>Contact HomePhone</strong> &rarr; set to the <strong>new</strong> Account phone value</li>
+        </ul>
+
+        <blockquote>
+            <p>This is a classic interview scenario that tests your ability to think through trigger design methodically. Let's break it down step by step before writing a single line of code.</p>
+        </blockquote>
+
+        <h2>Thinking Before Coding &mdash; The Analysis</h2>
+        <p>Before jumping into code, let's figure out 3 things:</p>
+
+        <ul>
+            <li><strong>Object:</strong> Account</li>
+            <li><strong>Event:</strong> <code>after update</code> &mdash; because we need to do something to another object (Contact), which means we need an "after" event</li>
+            <li><strong>DML Operation:</strong> <code>update</code> &mdash; the phone field is being <em>modified</em>, not inserted</li>
+        </ul>
+
+        <p>We also need to <strong>compare old value to new value</strong> to detect if the phone actually changed. This is done using <code>Trigger.oldMap</code> and <code>Trigger.new</code>.</p>
+
+        <h2>Step 1: Identify Accounts Where Phone Changed</h2>
+        <p>First, we collect the IDs of all Accounts where the Phone field was actually modified. We compare the new value (<code>Trigger.new</code>) against the old value (<code>Trigger.oldMap</code>).</p>
+
+        <pre><code>// Step 1: Store Account IDs where Phone changed
+Set&lt;Id&gt; accountIds = new Set&lt;Id&gt;();
+
+for (Account acc : Trigger.new) {
+    // Compare new phone to old phone
+    if (acc.Phone != Trigger.oldMap.get(acc.Id).Phone) {
+        accountIds.add(acc.Id);
+    }
+}</code></pre>
+
+        <p><strong>Why a Set?</strong> Sets prevent duplicates and are perfect for collecting IDs to use in SOQL WHERE clauses.</p>
+
+        <h2>Step 2: Fetch Related Contacts</h2>
+        <p>Now we query all Contacts that belong to the Accounts whose phone changed. We do this in a <strong>single query outside the loop</strong> to avoid governor limits.</p>
+
+        <pre><code>// Step 2: Fetch contacts related to those accounts
+List&lt;Contact&gt; relatedContacts = [
+    SELECT Id, AccountId, HomePhone, OtherPhone
+    FROM Contact
+    WHERE AccountId IN :accountIds
+];</code></pre>
+
+        <blockquote>
+            <p><strong>Key Best Practice:</strong> Never put SOQL inside a for-loop! Always query once using a collection of IDs.</p>
+        </blockquote>
+
+        <h2>Step 3: Update Contact Fields</h2>
+        <p>Finally, we iterate over the fetched Contacts, look up their parent Account's old and new phone values, and update the Contact fields accordingly.</p>
+
+        <pre><code>// Step 3: Iterate and update Contact phone fields
+List&lt;Contact&gt; contactsToUpdate = new List&lt;Contact&gt;();
+
+for (Contact con : relatedContacts) {
+    // Get the new Account record from Trigger.new via a map
+    Account newAcc = Trigger.newMap.get(con.AccountId);
+    // Get the old Account record from Trigger.oldMap
+    Account oldAcc = Trigger.oldMap.get(con.AccountId);
+
+    // HomePhone = new Account phone value
+    con.HomePhone = newAcc.Phone;
+    // OtherPhone = old Account phone value
+    con.OtherPhone = oldAcc.Phone;
+
+    contactsToUpdate.add(con);
+}
+
+// Bulk update all contacts
+if (!contactsToUpdate.isEmpty()) {
+    update contactsToUpdate;
+}</code></pre>
+
+        <h2>The Complete Trigger</h2>
+        <p>Putting it all together into a clean, bulkified trigger:</p>
+
+        <pre><code>trigger AccountPhoneTrigger on Account (after update) {
+
+    // Step 1: Collect Account IDs where Phone changed
+    Set&lt;Id&gt; accountIds = new Set&lt;Id&gt;();
+
+    for (Account acc : Trigger.new) {
+        if (acc.Phone != Trigger.oldMap.get(acc.Id).Phone) {
+            accountIds.add(acc.Id);
+        }
+    }
+
+    // Only proceed if at least one phone changed
+    if (accountIds.isEmpty()) {
+        return;
+    }
+
+    // Step 2: Query related Contacts (SOQL outside loop!)
+    List&lt;Contact&gt; relatedContacts = [
+        SELECT Id, AccountId, HomePhone, OtherPhone
+        FROM Contact
+        WHERE AccountId IN :accountIds
+    ];
+
+    // Step 3: Update Contact phone fields
+    List&lt;Contact&gt; contactsToUpdate = new List&lt;Contact&gt;();
+
+    for (Contact con : relatedContacts) {
+        Account newAcc = Trigger.newMap.get(con.AccountId);
+        Account oldAcc = Trigger.oldMap.get(con.AccountId);
+
+        con.HomePhone = newAcc.Phone;    // New value
+        con.OtherPhone = oldAcc.Phone;   // Old value
+
+        contactsToUpdate.add(con);
+    }
+
+    if (!contactsToUpdate.isEmpty()) {
+        update contactsToUpdate;
+    }
+}</code></pre>
+
+        <h2>How to Think About Any Trigger &mdash; The Framework</h2>
+        <p>Use this mental checklist every time you design a trigger:</p>
+
+        <ol>
+            <li><strong>Which Object?</strong> &mdash; What object fires the trigger? (Account)</li>
+            <li><strong>Before or After?</strong> &mdash; Are you updating the <em>same</em> record (before) or a <em>different</em> record (after)?</li>
+            <li><strong>Which DML?</strong> &mdash; Insert, Update, Delete, or Undelete?</li>
+            <li><strong>What changed?</strong> &mdash; Compare <code>Trigger.new</code> vs <code>Trigger.oldMap</code> to detect field changes</li>
+            <li><strong>Collect IDs first</strong> &mdash; Use a Set to gather IDs of relevant records</li>
+            <li><strong>Query once</strong> &mdash; Fetch related data in a single SOQL query outside loops</li>
+            <li><strong>Process &amp; update</strong> &mdash; Build a list of records to update, then do a single DML</li>
+        </ol>
+
+        <h2>Key Takeaways</h2>
+        <ul>
+            <li><strong>Use <code>after update</code></strong> when you need to modify records on a different object</li>
+            <li><strong><code>Trigger.oldMap</code></strong> gives you the previous field values &mdash; essential for detecting changes</li>
+            <li><strong><code>Trigger.newMap</code></strong> gives you the current/new field values</li>
+            <li><strong>Always bulkify</strong> &mdash; collect IDs in a Set, query once, DML once</li>
+            <li><strong>Early return</strong> &mdash; exit early if no relevant changes detected (saves resources)</li>
+        </ul>
+
+        <!-- Tags -->
+        <div class="post-tags">
+            <a href="#">Apex</a>
+            <a href="#">Triggers</a>
+            <a href="#">After Update</a>
+            <a href="#">Best Practices</a>
+            <a href="#">Trigger Design</a>
+            <a href="#">Bulkification</a>
+        </div>
+    </section>
+
+    <!-- Related Posts -->
+    <section class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Related <span class="gradient-text">Articles</span></h2>
+            </div>
+            <div class="posts-grid">
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-code"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Apex</span>
+                            <span class="post-date"><i class="far fa-calendar"></i> Mar 24, 2026</span>
+                        </div>
+                        <h3><a href="soql-best-practices.html">SOQL Best Practices & Query Optimization</a></h3>
+                        <p>Master SOQL queries with best practices for performance optimization and avoiding governor limits.</p>
+                        <a href="soql-best-practices.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-code"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Apex</span>
+                            <span class="post-date"><i class="far fa-calendar"></i> Mar 20, 2026</span>
+                        </div>
+                        <h3><a href="../post.html">Understanding Apex Triggers: A Complete Guide</a></h3>
+                        <p>Learn everything about Apex triggers from basic concepts to advanced patterns.</p>
+                        <a href="../post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-code"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Apex</span>
+                            <span class="post-date"><i class="far fa-calendar"></i> Feb 25, 2026</span>
+                        </div>
+                        <h3><a href="../post.html">Governor Limits: A Developer's Cheat Sheet</a></h3>
+                        <p>Complete reference for all Salesforce governor limits with practical examples.</p>
+                        <a href="../post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo"><i class="fab fa-salesforce"></i><span>SFDC<strong>Hub</strong></span></a>
+                    <p>Your one-stop destination for Salesforce learning.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="../categories.html#apex">Apex Programming</a></li>
+                        <li><a href="../categories.html#lwc">Lightning Web Components</a></li>
+                        <li><a href="../categories.html#admin">Admin & Configuration</a></li>
+                        <li><a href="../categories.html#integration">Integration</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../blog.html">Blog</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://developer.salesforce.com" target="_blank" rel="noopener">Salesforce Docs</a></li>
+                        <li><a href="https://trailhead.salesforce.com" target="_blank" rel="noopener">Trailhead</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SFDC Learning Hub. All rights reserved. Not affiliated with Salesforce, Inc.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
+</body>
+</html>
