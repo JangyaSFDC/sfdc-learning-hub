@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOQL Best Practices & Query Optimization - SFDC Learning Hub</title>
+    <meta name="description" content="Master SOQL queries with best practices for performance optimization, avoiding governor limits, and writing efficient queries in Salesforce.">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <i class="fab fa-salesforce"></i>
+                    <span>SFDC<strong>Hub</strong></span>
+                </a>
+                <nav class="nav" id="nav">
+                    <ul class="nav-list">
+                        <li><a href="../index.html" class="nav-link">Home</a></li>
+                        <li class="dropdown">
+                            <a href="../categories.html" class="nav-link">Categories <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="../categories.html#apex">Apex</a></li>
+                                <li><a href="../categories.html#lwc">Lightning Web Components</a></li>
+                                <li><a href="../categories.html#admin">Admin</a></li>
+                                <li><a href="../categories.html#integration">Integration</a></li>
+                                <li><a href="../categories.html#flows">Flows</a></li>
+                                <li><a href="../categories.html#interview">Interview Prep</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="../blog.html" class="nav-link">Blog</a></li>
+                        <li><a href="../about.html" class="nav-link">About</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="search-toggle" id="searchToggle" aria-label="Toggle search"><i class="fas fa-search"></i></button>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+                    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+                </div>
+            </div>
+            <div class="search-bar" id="searchBar">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search tutorials, guides, tips..." id="searchInput">
+                    <button class="search-close" id="searchClose"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Hero -->
+    <section class="post-hero">
+        <div class="container">
+            <div class="post-hero-content">
+                <nav class="breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="../blog.html">Blog</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="../categories.html#apex">Apex</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>SOQL Best Practices</span>
+                </nav>
+                <div class="post-meta" style="margin-bottom: 16px;">
+                    <span class="post-category">Apex</span>
+                    <span class="post-read"><i class="far fa-clock"></i> 10 min read</span>
+                </div>
+                <h1>SOQL Best Practices &amp; Query Optimization: Write Faster, Smarter Queries</h1>
+                <div class="post-author" style="margin-top: 24px;">
+                    <div class="author-avatar">SH</div>
+                    <div class="author-info">
+                        <div class="name">SFDC Hub Team</div>
+                        <div class="date">Published on March 24, 2026</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Post Body -->
+    <section class="post-body">
+
+        <h2>Why SOQL Optimization Matters</h2>
+        <p>Salesforce Object Query Language (SOQL) is the backbone of data retrieval in the Salesforce platform. Whether you're building Apex classes, Lightning components, or reports, your SOQL queries directly impact performance. Poorly written queries can hit governor limits, slow down user experience, and even cause runtime errors in production.</p>
+
+        <blockquote>
+            <p>A single poorly optimized SOQL query inside a loop can bring an entire transaction to its knees. Mastering SOQL best practices is non-negotiable for any serious Salesforce developer.</p>
+        </blockquote>
+
+        <h2>1. Always Use Selective Queries</h2>
+        <p>A selective query is one that uses indexed fields in the WHERE clause. Salesforce maintains indexes on certain fields by default:</p>
+
+        <ul>
+            <li><strong>Id</strong> &mdash; Always indexed</li>
+            <li><strong>Name</strong> &mdash; Always indexed</li>
+            <li><strong>OwnerId</strong> &mdash; Always indexed</li>
+            <li><strong>CreatedDate</strong> &mdash; Always indexed</li>
+            <li><strong>SystemModstamp</strong> &mdash; Always indexed</li>
+            <li><strong>RecordTypeId</strong> &mdash; Always indexed</li>
+            <li><strong>Lookup fields</strong> &mdash; Always indexed</li>
+            <li><strong>Custom fields marked as External ID or Unique</strong> &mdash; Custom indexed</li>
+        </ul>
+
+        <pre><code>// GOOD - Uses indexed field (Id)
+List&lt;Account&gt; accounts = [SELECT Id, Name FROM Account WHERE Id IN :accountIds];
+
+// BAD - Uses non-indexed custom field without filter
+List&lt;Account&gt; accounts = [SELECT Id, Name FROM Account WHERE Custom_Field__c = 'value'];</code></pre>
+
+        <p>If you frequently query on a custom field, request a custom index from Salesforce Support to improve performance.</p>
+
+        <h2>2. Never Put SOQL Inside Loops</h2>
+        <p>This is the #1 cause of governor limit exceptions. Salesforce allows only 100 SOQL queries per synchronous transaction. Putting a query inside a for-loop burns through this limit instantly.</p>
+
+        <pre><code>// BAD - SOQL inside loop (will hit 100 query limit)
+for (Account acc : accountList) {
+    List&lt;Contact&gt; contacts = [SELECT Id, Name FROM Contact WHERE AccountId = :acc.Id];
+    // process contacts
+}
+
+// GOOD - Query once, then process
+Map&lt;Id, List&lt;Contact&gt;&gt; contactsByAccount = new Map&lt;Id, List&lt;Contact&gt;&gt;();
+for (Contact con : [SELECT Id, Name, AccountId FROM Contact WHERE AccountId IN :accountIds]) {
+    if (!contactsByAccount.containsKey(con.AccountId)) {
+        contactsByAccount.put(con.AccountId, new List&lt;Contact&gt;());
+    }
+    contactsByAccount.get(con.AccountId).add(con);
+}
+
+// Now loop through accounts and use the map
+for (Account acc : accountList) {
+    List&lt;Contact&gt; relatedContacts = contactsByAccount.get(acc.Id);
+    // process related contacts
+}</code></pre>
+
+        <h2>3. Query Only the Fields You Need</h2>
+        <p>Every field you add to your SELECT clause adds to heap size and processing time. Only retrieve what you actually use.</p>
+
+        <pre><code>// BAD - Selecting everything (and you can't do SELECT * in SOQL anyway)
+List&lt;Account&gt; accounts = [SELECT Id, Name, Phone, Website, Industry, 
+    BillingStreet, BillingCity, BillingState, BillingPostalCode,
+    ShippingStreet, ShippingCity, ShippingState, ShippingPostalCode,
+    Description, NumberOfEmployees, AnnualRevenue
+    FROM Account WHERE Id IN :accountIds];
+
+// GOOD - Only select what you need
+List&lt;Account&gt; accounts = [SELECT Id, Name, Industry FROM Account WHERE Id IN :accountIds];</code></pre>
+
+        <h2>4. Use LIMIT to Control Record Count</h2>
+        <p>When you don't need all records, use LIMIT to cap results. This is especially useful in batch processes, list views, and test methods.</p>
+
+        <pre><code>// Get only the 10 most recent Opportunities
+List&lt;Opportunity&gt; recentOpps = [
+    SELECT Id, Name, Amount, CloseDate 
+    FROM Opportunity 
+    WHERE StageName = 'Closed Won'
+    ORDER BY CloseDate DESC 
+    LIMIT 10
+];</code></pre>
+
+        <h2>5. Use Relationship Queries Instead of Multiple Queries</h2>
+        <p>SOQL supports parent-to-child and child-to-parent relationship queries. Use them to reduce the total number of queries.</p>
+
+        <pre><code>// PARENT-TO-CHILD (subquery) - Get accounts with their contacts in ONE query
+List&lt;Account&gt; accountsWithContacts = [
+    SELECT Id, Name, 
+        (SELECT Id, FirstName, LastName, Email FROM Contacts)
+    FROM Account 
+    WHERE Id IN :accountIds
+];
+
+// CHILD-TO-PARENT - Get contact with account info in ONE query
+List&lt;Contact&gt; contacts = [
+    SELECT Id, FirstName, LastName, Account.Name, Account.Industry
+    FROM Contact 
+    WHERE AccountId IN :accountIds
+];</code></pre>
+
+        <h2>6. Use FOR UPDATE for Record Locking</h2>
+        <p>When you need to update records and want to prevent concurrent modifications, use FOR UPDATE to lock records.</p>
+
+        <pre><code>// Lock records to prevent concurrent updates
+List&lt;Account&gt; accounts = [
+    SELECT Id, Name, AnnualRevenue 
+    FROM Account 
+    WHERE Id = :accountId 
+    FOR UPDATE
+];</code></pre>
+
+        <blockquote>
+            <p>Use FOR UPDATE sparingly &mdash; it locks records and can cause other transactions to wait, leading to timeout errors if overused.</p>
+        </blockquote>
+
+        <h2>7. Aggregate Queries for Reporting</h2>
+        <p>Instead of fetching all records and calculating in Apex, use SOQL aggregate functions:</p>
+
+        <pre><code>// Count records by industry
+List&lt;AggregateResult&gt; results = [
+    SELECT Industry, COUNT(Id) total, SUM(AnnualRevenue) revenue
+    FROM Account 
+    WHERE Industry != null 
+    GROUP BY Industry
+    HAVING COUNT(Id) &gt; 5
+    ORDER BY COUNT(Id) DESC
+];
+
+for (AggregateResult ar : results) {
+    System.debug(ar.get('Industry') + ': ' + ar.get('total') + ' accounts, $' + ar.get('revenue'));
+}</code></pre>
+
+        <h2>8. SOQL Governor Limits Cheat Sheet</h2>
+        <p>Keep these limits in mind when writing queries:</p>
+
+        <ul>
+            <li><strong>100</strong> &mdash; Maximum SOQL queries per synchronous transaction</li>
+            <li><strong>200</strong> &mdash; Maximum SOQL queries per asynchronous transaction</li>
+            <li><strong>50,000</strong> &mdash; Maximum records retrieved by SOQL queries per transaction</li>
+            <li><strong>2,000</strong> &mdash; Maximum records returned by a SOQL subquery</li>
+            <li><strong>20</strong> &mdash; Maximum relationship subqueries in a single query</li>
+            <li><strong>35</strong> &mdash; Maximum GROUP BY expressions</li>
+        </ul>
+
+        <h2>9. Use Bind Variables for Security</h2>
+        <p>Always use bind variables (:variable) instead of string concatenation to prevent SOQL injection attacks:</p>
+
+        <pre><code>// BAD - Vulnerable to SOQL injection
+String userInput = 'test';
+String query = 'SELECT Id FROM Account WHERE Name = \'' + userInput + '\'';
+List&lt;Account&gt; accounts = Database.query(query);
+
+// GOOD - Safe with bind variable
+String userInput = 'test';
+List&lt;Account&gt; accounts = [SELECT Id FROM Account WHERE Name = :userInput];
+
+// GOOD - If dynamic SOQL is needed, use escapeSingleQuotes
+String userInput = String.escapeSingleQuotes('test');
+String query = 'SELECT Id FROM Account WHERE Name = \'' + userInput + '\'';
+List&lt;Account&gt; accounts = Database.query(query);</code></pre>
+
+        <h2>Summary</h2>
+        <p>Writing efficient SOQL queries is a foundational skill for every Salesforce developer. Remember these key principles: use selective queries with indexed fields, never put SOQL in loops, query only the fields you need, leverage relationship queries, and always use bind variables for security. Following these best practices will help you build applications that are performant, scalable, and governor-limit-friendly.</p>
+
+        <!-- Tags -->
+        <div class="post-tags">
+            <a href="#">SOQL</a>
+            <a href="#">Apex</a>
+            <a href="#">Performance</a>
+            <a href="#">Governor Limits</a>
+            <a href="#">Best Practices</a>
+            <a href="#">Query Optimization</a>
+        </div>
+    </section>
+
+    <!-- Related Posts -->
+    <section class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Related <span class="gradient-text">Articles</span></h2>
+            </div>
+            <div class="posts-grid">
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-code"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Apex</span>
+                            <span class="post-date"><i class="far fa-calendar"></i> Mar 20, 2026</span>
+                        </div>
+                        <h3><a href="../post.html">Understanding Apex Triggers: A Complete Guide</a></h3>
+                        <p>Learn everything about Apex triggers from basic concepts to advanced patterns.</p>
+                        <a href="../post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-code"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Apex</span>
+                            <span class="post-date"><i class="far fa-calendar"></i> Mar 5, 2026</span>
+                        </div>
+                        <h3><a href="../post.html">Batch Apex: Processing Large Data Volumes</a></h3>
+                        <p>Learn how to use Batch Apex to process millions of records efficiently.</p>
+                        <a href="../post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-code"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Apex</span>
+                            <span class="post-date"><i class="far fa-calendar"></i> Feb 25, 2026</span>
+                        </div>
+                        <h3><a href="../post.html">Governor Limits: A Developer's Cheat Sheet</a></h3>
+                        <p>Complete reference for all Salesforce governor limits with practical examples.</p>
+                        <a href="../post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo"><i class="fab fa-salesforce"></i><span>SFDC<strong>Hub</strong></span></a>
+                    <p>Your one-stop destination for Salesforce learning.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="../categories.html#apex">Apex Programming</a></li>
+                        <li><a href="../categories.html#lwc">Lightning Web Components</a></li>
+                        <li><a href="../categories.html#admin">Admin & Configuration</a></li>
+                        <li><a href="../categories.html#integration">Integration</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../blog.html">Blog</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://developer.salesforce.com" target="_blank" rel="noopener">Salesforce Docs</a></li>
+                        <li><a href="https://trailhead.salesforce.com" target="_blank" rel="noopener">Trailhead</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SFDC Learning Hub. All rights reserved. Not affiliated with Salesforce, Inc.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
+</body>
+</html>

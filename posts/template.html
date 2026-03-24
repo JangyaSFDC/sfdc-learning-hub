@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- STEP 1: Change the title below -->
+    <title>YOUR POST TITLE - SFDC Learning Hub</title>
+    <meta name="description" content="YOUR POST DESCRIPTION - 1-2 sentence summary for search engines">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <i class="fab fa-salesforce"></i>
+                    <span>SFDC<strong>Hub</strong></span>
+                </a>
+                <nav class="nav" id="nav">
+                    <ul class="nav-list">
+                        <li><a href="../index.html" class="nav-link">Home</a></li>
+                        <li class="dropdown">
+                            <a href="../categories.html" class="nav-link">Categories <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="../categories.html#apex">Apex</a></li>
+                                <li><a href="../categories.html#lwc">Lightning Web Components</a></li>
+                                <li><a href="../categories.html#admin">Admin</a></li>
+                                <li><a href="../categories.html#integration">Integration</a></li>
+                                <li><a href="../categories.html#flows">Flows</a></li>
+                                <li><a href="../categories.html#interview">Interview Prep</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="../blog.html" class="nav-link">Blog</a></li>
+                        <li><a href="../about.html" class="nav-link">About</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="search-toggle" id="searchToggle" aria-label="Toggle search"><i class="fas fa-search"></i></button>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+                    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+                </div>
+            </div>
+            <div class="search-bar" id="searchBar">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search tutorials, guides, tips..." id="searchInput">
+                    <button class="search-close" id="searchClose"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- STEP 2: Update the breadcrumb, category, title, and date -->
+    <section class="post-hero">
+        <div class="container">
+            <div class="post-hero-content">
+                <nav class="breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="../blog.html">Blog</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <!-- Change category link and name -->
+                    <a href="../categories.html#apex">Apex</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>YOUR POST TITLE</span>
+                </nav>
+                <div class="post-meta" style="margin-bottom: 16px;">
+                    <!-- Change category name -->
+                    <span class="post-category">Apex</span>
+                    <!-- Update reading time -->
+                    <span class="post-read"><i class="far fa-clock"></i> 5 min read</span>
+                </div>
+                <!-- Change post title -->
+                <h1>YOUR POST TITLE GOES HERE</h1>
+                <div class="post-author" style="margin-top: 24px;">
+                    <div class="author-avatar">SH</div>
+                    <div class="author-info">
+                        <div class="name">SFDC Hub Team</div>
+                        <!-- Update the date -->
+                        <div class="date">Published on March 24, 2026</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 3: Write your article content below -->
+    <section class="post-body">
+
+        <h2>Section Heading 1</h2>
+        <p>Your paragraph text goes here. Explain the concept clearly.</p>
+
+        <!-- Use blockquote for important callouts -->
+        <blockquote>
+            <p>Important note or key takeaway goes here.</p>
+        </blockquote>
+
+        <h2>Section Heading 2</h2>
+        <p>More content here.</p>
+
+        <!-- Use this for code blocks -->
+        <pre><code>// Your code example here
+System.debug('Hello World');</code></pre>
+
+        <h2>Section Heading 3</h2>
+        <p>Explanation text.</p>
+
+        <!-- Use this for bullet lists -->
+        <ul>
+            <li><strong>Point 1</strong> &mdash; Description</li>
+            <li><strong>Point 2</strong> &mdash; Description</li>
+            <li><strong>Point 3</strong> &mdash; Description</li>
+        </ul>
+
+        <!-- Use this for numbered lists -->
+        <ol>
+            <li><strong>Step 1</strong> &mdash; Description</li>
+            <li><strong>Step 2</strong> &mdash; Description</li>
+            <li><strong>Step 3</strong> &mdash; Description</li>
+        </ol>
+
+        <h2>Summary</h2>
+        <p>Wrap up the article with a brief conclusion.</p>
+
+        <!-- STEP 4: Update tags -->
+        <div class="post-tags">
+            <a href="#">Tag1</a>
+            <a href="#">Tag2</a>
+            <a href="#">Tag3</a>
+        </div>
+    </section>
+
+    <!-- STEP 5: Update related posts (optional) -->
+    <section class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Related <span class="gradient-text">Articles</span></h2>
+            </div>
+            <div class="posts-grid">
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-code"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Apex</span>
+                            <span class="post-date"><i class="far fa-calendar"></i> Mar 20, 2026</span>
+                        </div>
+                        <h3><a href="../post.html">Understanding Apex Triggers</a></h3>
+                        <p>Learn everything about Apex triggers from basic concepts to advanced patterns.</p>
+                        <a href="../post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo"><i class="fab fa-salesforce"></i><span>SFDC<strong>Hub</strong></span></a>
+                    <p>Your one-stop destination for Salesforce learning.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="../categories.html#apex">Apex Programming</a></li>
+                        <li><a href="../categories.html#lwc">Lightning Web Components</a></li>
+                        <li><a href="../categories.html#admin">Admin & Configuration</a></li>
+                        <li><a href="../categories.html#integration">Integration</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../blog.html">Blog</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://developer.salesforce.com" target="_blank" rel="noopener">Salesforce Docs</a></li>
+                        <li><a href="https://trailhead.salesforce.com" target="_blank" rel="noopener">Trailhead</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SFDC Learning Hub. All rights reserved. Not affiliated with Salesforce, Inc.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
+</body>
+</html>
