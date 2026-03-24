@@ -437,6 +437,79 @@ img {
     padding: 4px;
 }
 
+.u-section-alt {
+    background: var(--bg-secondary);
+}
+
+.u-post-meta-spaced {
+    margin-bottom: 16px;
+}
+
+.u-post-author-spaced {
+    margin-top: 24px;
+}
+
+.u-text-left {
+    text-align: left;
+}
+
+.u-flex-row-gap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.u-heading-tight {
+    margin-bottom: 4px;
+}
+
+.u-no-margin {
+    margin: 0;
+}
+
+.u-posts-grid-two {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.u-topics-compact {
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.u-topic-tag-compact {
+    font-size: 0.8rem;
+    padding: 4px 12px;
+}
+
+.u-about-list {
+    padding-left: 24px;
+    margin: 16px 0;
+}
+
+.u-about-list li {
+    list-style: disc;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.u-social-links-spaced {
+    margin-top: 20px;
+}
+
+.u-social-link-card {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+}
+
 /* ==========================================
    Hero Section
    ========================================== */
@@ -597,6 +670,36 @@ img {
     margin-bottom: 20px;
 }
 
+.category-icon-sm {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+}
+
+.accent-apex {
+    --accent: #1B96FF;
+}
+
+.accent-lwc {
+    --accent: #FF6B35;
+}
+
+.accent-admin {
+    --accent: #2E844A;
+}
+
+.accent-integration {
+    --accent: #9050E9;
+}
+
+.accent-flows {
+    --accent: #DD7A01;
+}
+
+.accent-interview {
+    --accent: #E3066A;
+}
+
 .category-card h3 {
     font-size: 1.15rem;
     font-weight: 700;
@@ -656,6 +759,30 @@ img {
     justify-content: center;
     font-size: 3rem;
     color: rgba(255, 255, 255, 0.3);
+}
+
+.bg-apex {
+    --bg: linear-gradient(135deg, #1B96FF, #0D47A1);
+}
+
+.bg-lwc {
+    --bg: linear-gradient(135deg, #FF6B35, #E65100);
+}
+
+.bg-admin {
+    --bg: linear-gradient(135deg, #2E844A, #1B5E20);
+}
+
+.bg-integration {
+    --bg: linear-gradient(135deg, #9050E9, #6A1B9A);
+}
+
+.bg-flows {
+    --bg: linear-gradient(135deg, #DD7A01, #E65100);
+}
+
+.bg-interview {
+    --bg: linear-gradient(135deg, #E3066A, #AD1457);
 }
 
 .post-badge {
@@ -822,6 +949,7 @@ img {
     font-size: 0.95rem;
     outline: none;
     font-family: var(--font-family);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
 
@@ -1471,7 +1599,7 @@ img {
     }
 
     .hero {
-        min-height: auto;
+        min-height: 0;
         padding-top: calc(var(--header-height) + 30px);
         padding-bottom: 40px;
     }

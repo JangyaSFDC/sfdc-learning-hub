@@ -46,7 +46,7 @@
                 <div class="search-input-wrapper">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Search tutorials, guides, tips..." id="searchInput">
-                    <button class="search-close" id="searchClose"><i class="fas fa-times"></i></button>
+                    <button class="search-close" id="searchClose" aria-label="Close search" title="Close search"><i class="fas fa-times"></i></button>
                 </div>
             </div>
         </div>
@@ -63,21 +63,21 @@
     <!-- Apex Category -->
     <section class="section" id="apex">
         <div class="container">
-            <div class="section-header" style="text-align: left;">
-                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
-                    <div class="category-icon" style="--accent: #1B96FF; width: 50px; height: 50px; font-size: 1.2rem;">
+            <div class="section-header u-text-left">
+                <div class="u-flex-row-gap">
+                    <div class="category-icon category-icon-sm accent-apex">
                         <i class="fas fa-code"></i>
                     </div>
                     <div>
-                        <h2 style="margin-bottom: 4px;">Apex Programming</h2>
-                        <p style="margin: 0;">Master server-side development on the Salesforce Platform</p>
+                        <h2 class="u-heading-tight">Apex Programming</h2>
+                        <p class="u-no-margin">Master server-side development on the Salesforce Platform</p>
                     </div>
                 </div>
             </div>
             <div class="posts-grid">
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-code"></i></div>
+                        <div class="post-image-placeholder bg-apex"><i class="fas fa-code"></i></div>
                     </div>
                     <div class="post-content">
                         <div class="post-meta">
@@ -91,7 +91,7 @@
                 </article>
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-code"></i></div>
+                        <div class="post-image-placeholder bg-apex"><i class="fas fa-code"></i></div>
                     </div>
                     <div class="post-content">
                         <div class="post-meta">
@@ -105,7 +105,7 @@
                 </article>
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-code"></i></div>
+                        <div class="post-image-placeholder bg-apex"><i class="fas fa-code"></i></div>
                     </div>
                     <div class="post-content">
                         <div class="post-meta">
@@ -122,23 +122,23 @@
     </section>
 
     <!-- LWC Category -->
-    <section class="section" id="lwc" style="background: var(--bg-secondary);">
+    <section class="section u-section-alt" id="lwc">
         <div class="container">
-            <div class="section-header" style="text-align: left;">
-                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
-                    <div class="category-icon" style="--accent: #FF6B35; width: 50px; height: 50px; font-size: 1.2rem;">
+            <div class="section-header u-text-left">
+                <div class="u-flex-row-gap">
+                    <div class="category-icon category-icon-sm accent-lwc">
                         <i class="fas fa-bolt"></i>
                     </div>
                     <div>
-                        <h2 style="margin-bottom: 4px;">Lightning Web Components</h2>
-                        <p style="margin: 0;">Build modern, fast UI with the LWC framework</p>
+                        <h2 class="u-heading-tight">Lightning Web Components</h2>
+                        <p class="u-no-margin">Build modern, fast UI with the LWC framework</p>
                     </div>
                 </div>
             </div>
             <div class="posts-grid">
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #FF6B35, #E65100);"><i class="fas fa-bolt"></i></div>
+                        <div class="post-image-placeholder bg-lwc"><i class="fas fa-bolt"></i></div>
                     </div>
                     <div class="post-content">
                         <div class="post-meta">
@@ -152,7 +152,7 @@
                 </article>
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #FF6B35, #E65100);"><i class="fas fa-bolt"></i></div>
+                        <div class="post-image-placeholder bg-lwc"><i class="fas fa-bolt"></i></div>
                     </div>
                     <div class="post-content">
                         <div class="post-meta">
@@ -166,7 +166,7 @@
                 </article>
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #FF6B35, #E65100);"><i class="fas fa-bolt"></i></div>
+                        <div class="post-image-placeholder bg-lwc"><i class="fas fa-bolt"></i></div>
                     </div>
                     <div class="post-content">
                         <div class="post-meta">
@@ -185,21 +185,21 @@
     <!-- Admin Category -->
     <section class="section" id="admin">
         <div class="container">
-            <div class="section-header" style="text-align: left;">
-                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
-                    <div class="category-icon" style="--accent: #2E844A; width: 50px; height: 50px; font-size: 1.2rem;">
+            <div class="section-header u-text-left">
+                <div class="u-flex-row-gap">
+                    <div class="category-icon category-icon-sm accent-admin">
                         <i class="fas fa-cogs"></i>
                     </div>
                     <div>
-                        <h2 style="margin-bottom: 4px;">Admin &amp; Configuration</h2>
-                        <p style="margin: 0;">Declarative development, security, and platform management</p>
+                        <h2 class="u-heading-tight">Admin &amp; Configuration</h2>
+                        <p class="u-no-margin">Declarative development, security, and platform management</p>
                     </div>
                 </div>
             </div>
             <div class="posts-grid">
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #2E844A, #1B5E20);"><i class="fas fa-cogs"></i></div>
+                        <div class="post-image-placeholder bg-admin"><i class="fas fa-cogs"></i></div>
                     </div>
                     <div class="post-content">
                         <div class="post-meta">
@@ -213,7 +213,7 @@
                 </article>
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #2E844A, #1B5E20);"><i class="fas fa-cogs"></i></div>
+                        <div class="post-image-placeholder bg-admin"><i class="fas fa-cogs"></i></div>
                     </div>
                     <div class="post-content">
                         <div class="post-meta">
@@ -227,7 +227,7 @@
                 </article>
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #2E844A, #1B5E20);"><i class="fas fa-cogs"></i></div>
+                        <div class="post-image-placeholder bg-admin"><i class="fas fa-cogs"></i></div>
                     </div>
                     <div class="post-content">
                         <div class="post-meta">
@@ -244,23 +244,23 @@
     </section>
 
     <!-- Integration Category -->
-    <section class="section" id="integration" style="background: var(--bg-secondary);">
+    <section class="section u-section-alt" id="integration">
         <div class="container">
-            <div class="section-header" style="text-align: left;">
-                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
-                    <div class="category-icon" style="--accent: #9050E9; width: 50px; height: 50px; font-size: 1.2rem;">
+            <div class="section-header u-text-left">
+                <div class="u-flex-row-gap">
+                    <div class="category-icon category-icon-sm accent-integration">
                         <i class="fas fa-plug"></i>
                     </div>
                     <div>
-                        <h2 style="margin-bottom: 4px;">Integration</h2>
-                        <p style="margin: 0;">Connect Salesforce with external systems and services</p>
+                        <h2 class="u-heading-tight">Integration</h2>
+                        <p class="u-no-margin">Connect Salesforce with external systems and services</p>
                     </div>
                 </div>
             </div>
             <div class="posts-grid">
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #9050E9, #6A1B9A);"><i class="fas fa-plug"></i></div>
+                        <div class="post-image-placeholder bg-integration"><i class="fas fa-plug"></i></div>
                     </div>
                     <div class="post-content">
                         <div class="post-meta">
@@ -274,7 +274,7 @@
                 </article>
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #9050E9, #6A1B9A);"><i class="fas fa-plug"></i></div>
+                        <div class="post-image-placeholder bg-integration"><i class="fas fa-plug"></i></div>
                     </div>
                     <div class="post-content">
                         <div class="post-meta">
@@ -288,7 +288,7 @@
                 </article>
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #9050E9, #6A1B9A);"><i class="fas fa-plug"></i></div>
+                        <div class="post-image-placeholder bg-integration"><i class="fas fa-plug"></i></div>
                     </div>
                     <div class="post-content">
                         <div class="post-meta">
@@ -307,21 +307,21 @@
     <!-- Flows Category -->
     <section class="section" id="flows">
         <div class="container">
-            <div class="section-header" style="text-align: left;">
-                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
-                    <div class="category-icon" style="--accent: #DD7A01; width: 50px; height: 50px; font-size: 1.2rem;">
+            <div class="section-header u-text-left">
+                <div class="u-flex-row-gap">
+                    <div class="category-icon category-icon-sm accent-flows">
                         <i class="fas fa-project-diagram"></i>
                     </div>
                     <div>
-                        <h2 style="margin-bottom: 4px;">Flows &amp; Automation</h2>
-                        <p style="margin: 0;">Automate business processes with clicks, not code</p>
+                        <h2 class="u-heading-tight">Flows &amp; Automation</h2>
+                        <p class="u-no-margin">Automate business processes with clicks, not code</p>
                     </div>
                 </div>
             </div>
             <div class="posts-grid">
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #DD7A01, #E65100);"><i class="fas fa-project-diagram"></i></div>
+                        <div class="post-image-placeholder bg-flows"><i class="fas fa-project-diagram"></i></div>
                     </div>
                     <div class="post-content">
                         <div class="post-meta">
@@ -335,7 +335,7 @@
                 </article>
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #DD7A01, #E65100);"><i class="fas fa-project-diagram"></i></div>
+                        <div class="post-image-placeholder bg-flows"><i class="fas fa-project-diagram"></i></div>
                     </div>
                     <div class="post-content">
                         <div class="post-meta">
@@ -349,7 +349,7 @@
                 </article>
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #DD7A01, #E65100);"><i class="fas fa-project-diagram"></i></div>
+                        <div class="post-image-placeholder bg-flows"><i class="fas fa-project-diagram"></i></div>
                     </div>
                     <div class="post-content">
                         <div class="post-meta">
@@ -366,23 +366,23 @@
     </section>
 
     <!-- Interview Category -->
-    <section class="section" id="interview" style="background: var(--bg-secondary);">
+    <section class="section u-section-alt" id="interview">
         <div class="container">
-            <div class="section-header" style="text-align: left;">
-                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
-                    <div class="category-icon" style="--accent: #E3066A; width: 50px; height: 50px; font-size: 1.2rem;">
+            <div class="section-header u-text-left">
+                <div class="u-flex-row-gap">
+                    <div class="category-icon category-icon-sm accent-interview">
                         <i class="fas fa-user-tie"></i>
                     </div>
                     <div>
-                        <h2 style="margin-bottom: 4px;">Interview Preparation</h2>
-                        <p style="margin: 0;">Ace your next Salesforce interview with confidence</p>
+                        <h2 class="u-heading-tight">Interview Preparation</h2>
+                        <p class="u-no-margin">Ace your next Salesforce interview with confidence</p>
                     </div>
                 </div>
             </div>
             <div class="posts-grid">
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #E3066A, #AD1457);"><i class="fas fa-user-tie"></i></div>
+                        <div class="post-image-placeholder bg-interview"><i class="fas fa-user-tie"></i></div>
                     </div>
                     <div class="post-content">
                         <div class="post-meta">
@@ -396,7 +396,7 @@
                 </article>
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #E3066A, #AD1457);"><i class="fas fa-user-tie"></i></div>
+                        <div class="post-image-placeholder bg-interview"><i class="fas fa-user-tie"></i></div>
                     </div>
                     <div class="post-content">
                         <div class="post-meta">
@@ -410,7 +410,7 @@
                 </article>
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #E3066A, #AD1457);"><i class="fas fa-user-tie"></i></div>
+                        <div class="post-image-placeholder bg-interview"><i class="fas fa-user-tie"></i></div>
                     </div>
                     <div class="post-content">
                         <div class="post-meta">

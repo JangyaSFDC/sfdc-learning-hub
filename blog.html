@@ -52,7 +52,7 @@
                 <div class="search-input-wrapper">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Search tutorials, guides, tips..." id="searchInput">
-                    <button class="search-close" id="searchClose"><i class="fas fa-times"></i></button>
+                    <button class="search-close" id="searchClose" aria-label="Close search" title="Close search"><i class="fas fa-times"></i></button>
                 </div>
             </div>
         </div>
@@ -83,10 +83,10 @@
                     </div>
 
                     <!-- Posts -->
-                    <div class="posts-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <div class="posts-grid u-posts-grid-two">
                         <article class="post-card" data-category="admin">
                             <div class="post-image">
-                                <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #2E844A, #1B5E20);"><i class="fas fa-cogs"></i></div>
+                                <div class="post-image-placeholder bg-admin"><i class="fas fa-cogs"></i></div>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
@@ -101,7 +101,7 @@
 
                         <article class="post-card" data-category="apex">
                             <div class="post-image">
-                                <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-cog"></i></div>
+                                <div class="post-image-placeholder bg-apex"><i class="fas fa-cog"></i></div>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
@@ -116,7 +116,7 @@
 
                         <article class="post-card" data-category="apex">
                             <div class="post-image">
-                                <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-database"></i></div>
+                                <div class="post-image-placeholder bg-apex"><i class="fas fa-database"></i></div>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
@@ -131,7 +131,7 @@
 
                         <article class="post-card" data-category="apex">
                             <div class="post-image">
-                                <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-code"></i></div>
+                                <div class="post-image-placeholder bg-apex"><i class="fas fa-code"></i></div>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
@@ -146,7 +146,7 @@
 
                         <article class="post-card" data-category="lwc">
                             <div class="post-image">
-                                <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #FF6B35, #E65100);"><i class="fas fa-bolt"></i></div>
+                                <div class="post-image-placeholder bg-lwc"><i class="fas fa-bolt"></i></div>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
@@ -161,7 +161,7 @@
 
                         <article class="post-card" data-category="admin">
                             <div class="post-image">
-                                <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #2E844A, #1B5E20);"><i class="fas fa-cogs"></i></div>
+                                <div class="post-image-placeholder bg-admin"><i class="fas fa-cogs"></i></div>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
@@ -176,7 +176,7 @@
 
                         <article class="post-card" data-category="integration">
                             <div class="post-image">
-                                <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #9050E9, #6A1B9A);"><i class="fas fa-plug"></i></div>
+                                <div class="post-image-placeholder bg-integration"><i class="fas fa-plug"></i></div>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
@@ -191,7 +191,7 @@
 
                         <article class="post-card" data-category="flows">
                             <div class="post-image">
-                                <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #DD7A01, #E65100);"><i class="fas fa-project-diagram"></i></div>
+                                <div class="post-image-placeholder bg-flows"><i class="fas fa-project-diagram"></i></div>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
@@ -206,7 +206,7 @@
 
                         <article class="post-card" data-category="interview">
                             <div class="post-image">
-                                <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #E3066A, #AD1457);"><i class="fas fa-user-tie"></i></div>
+                                <div class="post-image-placeholder bg-interview"><i class="fas fa-user-tie"></i></div>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
@@ -221,7 +221,7 @@
 
                         <article class="post-card" data-category="apex">
                             <div class="post-image">
-                                <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-code"></i></div>
+                                <div class="post-image-placeholder bg-apex"><i class="fas fa-code"></i></div>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
@@ -236,7 +236,7 @@
 
                         <article class="post-card" data-category="lwc">
                             <div class="post-image">
-                                <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #FF6B35, #E65100);"><i class="fas fa-bolt"></i></div>
+                                <div class="post-image-placeholder bg-lwc"><i class="fas fa-bolt"></i></div>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
@@ -252,12 +252,12 @@
 
                     <!-- Pagination -->
                     <div class="pagination">
-                        <a href="#"><i class="fas fa-chevron-left"></i></a>
+                        <a href="#" aria-label="Previous page" title="Previous page"><i class="fas fa-chevron-left"></i></a>
                         <span class="active">1</span>
                         <a href="#">2</a>
                         <a href="#">3</a>
                         <a href="#">4</a>
-                        <a href="#"><i class="fas fa-chevron-right"></i></a>
+                        <a href="#" aria-label="Next page" title="Next page"><i class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
 
@@ -288,15 +288,15 @@
 
                     <div class="sidebar-widget">
                         <h3>Tags</h3>
-                        <div class="topics-cloud" style="justify-content: flex-start; gap: 8px;">
-                            <a href="#" class="topic-tag" style="font-size: 0.8rem; padding: 4px 12px;">Apex</a>
-                            <a href="#" class="topic-tag" style="font-size: 0.8rem; padding: 4px 12px;">SOQL</a>
-                            <a href="#" class="topic-tag" style="font-size: 0.8rem; padding: 4px 12px;">LWC</a>
-                            <a href="#" class="topic-tag" style="font-size: 0.8rem; padding: 4px 12px;">Triggers</a>
-                            <a href="#" class="topic-tag" style="font-size: 0.8rem; padding: 4px 12px;">Batch</a>
-                            <a href="#" class="topic-tag" style="font-size: 0.8rem; padding: 4px 12px;">REST API</a>
-                            <a href="#" class="topic-tag" style="font-size: 0.8rem; padding: 4px 12px;">Flows</a>
-                            <a href="#" class="topic-tag" style="font-size: 0.8rem; padding: 4px 12px;">Security</a>
+                        <div class="topics-cloud u-topics-compact">
+                            <a href="#" class="topic-tag u-topic-tag-compact">Apex</a>
+                            <a href="#" class="topic-tag u-topic-tag-compact">SOQL</a>
+                            <a href="#" class="topic-tag u-topic-tag-compact">LWC</a>
+                            <a href="#" class="topic-tag u-topic-tag-compact">Triggers</a>
+                            <a href="#" class="topic-tag u-topic-tag-compact">Batch</a>
+                            <a href="#" class="topic-tag u-topic-tag-compact">REST API</a>
+                            <a href="#" class="topic-tag u-topic-tag-compact">Flows</a>
+                            <a href="#" class="topic-tag u-topic-tag-compact">Security</a>
                         </div>
                     </div>
                 </aside>

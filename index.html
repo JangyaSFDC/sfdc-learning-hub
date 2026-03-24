@@ -55,7 +55,7 @@
                 <div class="search-input-wrapper">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Search tutorials, guides, tips..." id="searchInput">
-                    <button class="search-close" id="searchClose"><i class="fas fa-times"></i></button>
+                    <button class="search-close" id="searchClose" aria-label="Close search" title="Close search"><i class="fas fa-times"></i></button>
                 </div>
             </div>
         </div>
@@ -109,7 +109,7 @@
             </div>
             <div class="categories-grid">
                 <a href="categories.html#apex" class="category-card">
-                    <div class="category-icon" style="--accent: #1B96FF;">
+                    <div class="category-icon accent-apex">
                         <i class="fas fa-code"></i>
                     </div>
                     <h3>Apex Programming</h3>
@@ -117,7 +117,7 @@
                     <span class="category-count">35+ Articles</span>
                 </a>
                 <a href="categories.html#lwc" class="category-card">
-                    <div class="category-icon" style="--accent: #FF6B35;">
+                    <div class="category-icon accent-lwc">
                         <i class="fas fa-bolt"></i>
                     </div>
                     <h3>Lightning Web Components</h3>
@@ -125,7 +125,7 @@
                     <span class="category-count">28+ Articles</span>
                 </a>
                 <a href="categories.html#admin" class="category-card">
-                    <div class="category-icon" style="--accent: #2E844A;">
+                    <div class="category-icon accent-admin">
                         <i class="fas fa-cogs"></i>
                     </div>
                     <h3>Admin & Configuration</h3>
@@ -133,7 +133,7 @@
                     <span class="category-count">25+ Articles</span>
                 </a>
                 <a href="categories.html#integration" class="category-card">
-                    <div class="category-icon" style="--accent: #9050E9;">
+                    <div class="category-icon accent-integration">
                         <i class="fas fa-plug"></i>
                     </div>
                     <h3>Integration</h3>
@@ -141,7 +141,7 @@
                     <span class="category-count">20+ Articles</span>
                 </a>
                 <a href="categories.html#flows" class="category-card">
-                    <div class="category-icon" style="--accent: #DD7A01;">
+                    <div class="category-icon accent-flows">
                         <i class="fas fa-project-diagram"></i>
                     </div>
                     <h3>Flows & Automation</h3>
@@ -149,7 +149,7 @@
                     <span class="category-count">22+ Articles</span>
                 </a>
                 <a href="categories.html#interview" class="category-card">
-                    <div class="category-icon" style="--accent: #E3066A;">
+                    <div class="category-icon accent-interview">
                         <i class="fas fa-user-tie"></i>
                     </div>
                     <h3>Interview Preparation</h3>
@@ -172,7 +172,7 @@
                 <!-- Latest Post -->
                 <article class="post-card featured-post">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #2E844A, #1B5E20);">
+                        <div class="post-image-placeholder bg-admin">
                             <i class="fas fa-cogs"></i>
                         </div>
                         <span class="post-badge">New</span>
@@ -192,7 +192,7 @@
                 <!-- Trigger Post -->
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);">
+                        <div class="post-image-placeholder bg-apex">
                             <i class="fas fa-cog"></i>
                         </div>
                     </div>
@@ -211,7 +211,7 @@
                 <!-- SOQL Post -->
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);">
+                        <div class="post-image-placeholder bg-apex">
                             <i class="fas fa-database"></i>
                         </div>
                     </div>
@@ -230,7 +230,7 @@
                 <!-- Post 1 -->
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);">
+                        <div class="post-image-placeholder bg-apex">
                             <i class="fas fa-code"></i>
                         </div>
                     </div>
@@ -249,7 +249,7 @@
                 <!-- Post 2 -->
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #FF6B35, #E65100);">
+                        <div class="post-image-placeholder bg-lwc">
                             <i class="fas fa-bolt"></i>
                         </div>
                     </div>
@@ -268,7 +268,7 @@
                 <!-- Post 3 -->
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #2E844A, #1B5E20);">
+                        <div class="post-image-placeholder bg-admin">
                             <i class="fas fa-cogs"></i>
                         </div>
                     </div>
@@ -287,7 +287,7 @@
                 <!-- Post 4 -->
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #9050E9, #6A1B9A);">
+                        <div class="post-image-placeholder bg-integration">
                             <i class="fas fa-plug"></i>
                         </div>
                     </div>
@@ -306,7 +306,7 @@
                 <!-- Post 5 -->
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #DD7A01, #E65100);">
+                        <div class="post-image-placeholder bg-flows">
                             <i class="fas fa-project-diagram"></i>
                         </div>
                     </div>
@@ -325,7 +325,7 @@
                 <!-- Post 6 -->
                 <article class="post-card">
                     <div class="post-image">
-                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #E3066A, #AD1457);">
+                        <div class="post-image-placeholder bg-interview">
                             <i class="fas fa-user-tie"></i>
                         </div>
                     </div>
