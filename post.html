@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Apex Triggers - SFDC Learning Hub</title>
+    <meta name="description" content="Learn everything about Apex triggers from basic concepts to advanced patterns including trigger frameworks and best practices.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <i class="fab fa-salesforce"></i>
+                    <span>SFDC<strong>Hub</strong></span>
+                </a>
+                <nav class="nav" id="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li class="dropdown">
+                            <a href="categories.html" class="nav-link">Categories <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="categories.html#apex">Apex</a></li>
+                                <li><a href="categories.html#lwc">Lightning Web Components</a></li>
+                                <li><a href="categories.html#admin">Admin</a></li>
+                                <li><a href="categories.html#integration">Integration</a></li>
+                                <li><a href="categories.html#flows">Flows</a></li>
+                                <li><a href="categories.html#interview">Interview Prep</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="blog.html" class="nav-link">Blog</a></li>
+                        <li><a href="about.html" class="nav-link">About</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="search-toggle" id="searchToggle" aria-label="Toggle search"><i class="fas fa-search"></i></button>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+                    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+                </div>
+            </div>
+            <div class="search-bar" id="searchBar">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search tutorials, guides, tips..." id="searchInput">
+                    <button class="search-close" id="searchClose"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Hero -->
+    <section class="post-hero">
+        <div class="container">
+            <div class="post-hero-content">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="blog.html">Blog</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="categories.html#apex">Apex</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Apex Triggers Guide</span>
+                </nav>
+                <div class="post-meta" style="margin-bottom: 16px;">
+                    <span class="post-category">Apex</span>
+                    <span class="post-read"><i class="far fa-clock"></i> 8 min read</span>
+                </div>
+                <h1>Understanding Apex Triggers: A Complete Guide for Beginners</h1>
+                <div class="post-author" style="margin-top: 24px;">
+                    <div class="author-avatar">SH</div>
+                    <div class="author-info">
+                        <div class="name">SFDC Hub Team</div>
+                        <div class="date">Published on March 20, 2026</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Post Body -->
+    <section class="post-body">
+        <h2>What are Apex Triggers?</h2>
+        <p>Apex triggers are pieces of code that execute before or after specific data manipulation language (DML) events occur in Salesforce. They allow you to perform custom actions when records are inserted, updated, deleted, merged, upserted, or undeleted.</p>
+
+        <blockquote>
+            <p>Triggers are essential for implementing complex business logic that cannot be achieved through declarative tools like Flows or Validation Rules.</p>
+        </blockquote>
+
+        <h2>Trigger Syntax</h2>
+        <p>The basic syntax for an Apex trigger includes the trigger keyword, the object it fires on, and the DML events it responds to:</p>
+
+        <pre><code>trigger AccountTrigger on Account (before insert, before update, after insert, after update) {
+    // Your trigger logic here
+    if (Trigger.isBefore &amp;&amp; Trigger.isInsert) {
+        // Handle before insert logic
+        for (Account acc : Trigger.new) {
+            if (acc.Industry == null) {
+                acc.Industry = 'Other';
+            }
+        }
+    }
+}</code></pre>
+
+        <h2>Trigger Context Variables</h2>
+        <p>Salesforce provides several context variables that give you access to the records that caused the trigger to fire:</p>
+
+        <ul>
+            <li><code>Trigger.new</code> &mdash; Returns a list of the new versions of the sObject records</li>
+            <li><code>Trigger.old</code> &mdash; Returns a list of the old versions of the sObject records</li>
+            <li><code>Trigger.newMap</code> &mdash; A map of IDs to the new versions of the records</li>
+            <li><code>Trigger.oldMap</code> &mdash; A map of IDs to the old versions of the records</li>
+            <li><code>Trigger.isBefore</code> / <code>Trigger.isAfter</code> &mdash; Context booleans</li>
+            <li><code>Trigger.isInsert</code> / <code>Trigger.isUpdate</code> / <code>Trigger.isDelete</code> &mdash; Operation type</li>
+        </ul>
+
+        <h2>Before vs After Triggers</h2>
+        <p>Understanding when to use before vs after triggers is crucial for writing efficient code:</p>
+
+        <h3>Before Triggers</h3>
+        <p>Use before triggers when you need to validate or modify field values before they are saved to the database. Since the record hasn't been committed yet, you can modify fields directly on <code>Trigger.new</code> records without performing an additional DML operation.</p>
+
+        <h3>After Triggers</h3>
+        <p>Use after triggers when you need to access field values that are set by the system (such as the record's Id or LastModifiedDate), or when you need to make changes to other records. In after triggers, <code>Trigger.new</code> records are read-only.</p>
+
+        <h2>Trigger Best Practices</h2>
+        <ol>
+            <li><strong>One trigger per object</strong> &mdash; Consolidate all logic into a single trigger per sObject to maintain control over execution order</li>
+            <li><strong>Logic-less triggers</strong> &mdash; Keep triggers thin by delegating business logic to handler classes</li>
+            <li><strong>Bulkify your code</strong> &mdash; Always write triggers that can handle collections of records, not just single records</li>
+            <li><strong>Avoid SOQL/DML in loops</strong> &mdash; Collect data in lists and perform operations outside of loops</li>
+            <li><strong>Use trigger frameworks</strong> &mdash; Implement a trigger framework for consistent pattern and recursion control</li>
+        </ol>
+
+        <h2>Trigger Handler Pattern</h2>
+        <p>A common best practice is to use a trigger handler pattern. The trigger itself is minimal, and all logic lives in a separate handler class:</p>
+
+        <pre><code>// Trigger
+trigger AccountTrigger on Account (before insert, before update, after insert, after update) {
+    AccountTriggerHandler handler = new AccountTriggerHandler();
+    handler.run();
+}
+
+// Handler Class
+public class AccountTriggerHandler {
+    public void run() {
+        if (Trigger.isBefore &amp;&amp; Trigger.isInsert) {
+            beforeInsert(Trigger.new);
+        } else if (Trigger.isBefore &amp;&amp; Trigger.isUpdate) {
+            beforeUpdate(Trigger.new, Trigger.oldMap);
+        } else if (Trigger.isAfter &amp;&amp; Trigger.isInsert) {
+            afterInsert(Trigger.new);
+        }
+    }
+
+    private void beforeInsert(List&lt;Account&gt; newAccounts) {
+        // Before insert logic
+    }
+
+    private void beforeUpdate(List&lt;Account&gt; newAccounts, Map&lt;Id, Account&gt; oldMap) {
+        // Before update logic
+    }
+
+    private void afterInsert(List&lt;Account&gt; newAccounts) {
+        // After insert logic
+    }
+}</code></pre>
+
+        <h2>Summary</h2>
+        <p>Apex triggers are powerful tools in the Salesforce developer's toolkit. By following best practices like using trigger handler patterns, bulkifying your code, and keeping triggers logic-less, you can build robust and maintainable automation that scales well within the platform's governor limits.</p>
+
+        <!-- Tags -->
+        <div class="post-tags">
+            <a href="#">Apex</a>
+            <a href="#">Triggers</a>
+            <a href="#">Best Practices</a>
+            <a href="#">Design Patterns</a>
+            <a href="#">DML</a>
+        </div>
+    </section>
+
+    <!-- Related Posts -->
+    <section class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Related <span class="gradient-text">Articles</span></h2>
+            </div>
+            <div class="posts-grid">
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-code"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Apex</span>
+                            <span class="post-date"><i class="far fa-calendar"></i> Mar 5, 2026</span>
+                        </div>
+                        <h3><a href="post.html">Batch Apex: Processing Large Data</a></h3>
+                        <p>Learn how to use Batch Apex to process millions of records efficiently.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-code"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Apex</span>
+                            <span class="post-date"><i class="far fa-calendar"></i> Feb 28, 2026</span>
+                        </div>
+                        <h3><a href="post.html">SOQL Best Practices & Optimization</a></h3>
+                        <p>Write efficient SOQL queries and avoid common performance pitfalls.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-code"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Apex</span>
+                            <span class="post-date"><i class="far fa-calendar"></i> Feb 25, 2026</span>
+                        </div>
+                        <h3><a href="post.html">Governor Limits: A Developer's Cheat Sheet</a></h3>
+                        <p>Complete reference for all Salesforce governor limits with practical examples.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo"><i class="fab fa-salesforce"></i><span>SFDC<strong>Hub</strong></span></a>
+                    <p>Your one-stop destination for Salesforce learning.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="categories.html#apex">Apex Programming</a></li>
+                        <li><a href="categories.html#lwc">Lightning Web Components</a></li>
+                        <li><a href="categories.html#admin">Admin & Configuration</a></li>
+                        <li><a href="categories.html#integration">Integration</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://developer.salesforce.com" target="_blank" rel="noopener">Salesforce Docs</a></li>
+                        <li><a href="https://trailhead.salesforce.com" target="_blank" rel="noopener">Trailhead</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SFDC Learning Hub. All rights reserved. Not affiliated with Salesforce, Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+    <script src="js/main.js"></script>
+</body>
+</html>

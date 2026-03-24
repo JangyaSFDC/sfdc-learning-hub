@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - SFDC Learning Hub</title>
+    <meta name="description" content="Browse Salesforce tutorials by category: Apex, LWC, Admin, Integration, Flows, and Interview Preparation.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <i class="fab fa-salesforce"></i>
+                    <span>SFDC<strong>Hub</strong></span>
+                </a>
+                <nav class="nav" id="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li class="dropdown">
+                            <a href="categories.html" class="nav-link active">Categories <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#apex">Apex</a></li>
+                                <li><a href="#lwc">Lightning Web Components</a></li>
+                                <li><a href="#admin">Admin</a></li>
+                                <li><a href="#integration">Integration</a></li>
+                                <li><a href="#flows">Flows</a></li>
+                                <li><a href="#interview">Interview Prep</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="blog.html" class="nav-link">Blog</a></li>
+                        <li><a href="about.html" class="nav-link">About</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="search-toggle" id="searchToggle" aria-label="Toggle search"><i class="fas fa-search"></i></button>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+                    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+                </div>
+            </div>
+            <div class="search-bar" id="searchBar">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search tutorials, guides, tips..." id="searchInput">
+                    <button class="search-close" id="searchClose"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Learning <span class="gradient-text">Categories</span></h1>
+            <p>Structured learning paths across all Salesforce domains</p>
+        </div>
+    </section>
+
+    <!-- Apex Category -->
+    <section class="section" id="apex">
+        <div class="container">
+            <div class="section-header" style="text-align: left;">
+                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                    <div class="category-icon" style="--accent: #1B96FF; width: 50px; height: 50px; font-size: 1.2rem;">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div>
+                        <h2 style="margin-bottom: 4px;">Apex Programming</h2>
+                        <p style="margin: 0;">Master server-side development on the Salesforce Platform</p>
+                    </div>
+                </div>
+            </div>
+            <div class="posts-grid">
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-code"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Apex</span>
+                            <span class="post-read"><i class="far fa-clock"></i> 8 min</span>
+                        </div>
+                        <h3><a href="post.html">Understanding Apex Triggers: A Complete Guide</a></h3>
+                        <p>Learn everything about Apex triggers from basic concepts to advanced patterns.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-code"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Apex</span>
+                            <span class="post-read"><i class="far fa-clock"></i> 10 min</span>
+                        </div>
+                        <h3><a href="post.html">Batch Apex: Processing Large Data Volumes</a></h3>
+                        <p>Learn how to use Batch Apex to process millions of records efficiently.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-code"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Apex</span>
+                            <span class="post-read"><i class="far fa-clock"></i> 7 min</span>
+                        </div>
+                        <h3><a href="post.html">Governor Limits: A Developer's Cheat Sheet</a></h3>
+                        <p>Complete reference for Salesforce governor limits with practical examples.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- LWC Category -->
+    <section class="section" id="lwc" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header" style="text-align: left;">
+                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                    <div class="category-icon" style="--accent: #FF6B35; width: 50px; height: 50px; font-size: 1.2rem;">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h2 style="margin-bottom: 4px;">Lightning Web Components</h2>
+                        <p style="margin: 0;">Build modern, fast UI with the LWC framework</p>
+                    </div>
+                </div>
+            </div>
+            <div class="posts-grid">
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #FF6B35, #E65100);"><i class="fas fa-bolt"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">LWC</span>
+                            <span class="post-read"><i class="far fa-clock"></i> 10 min</span>
+                        </div>
+                        <h3><a href="post.html">Building Reusable LWC Components</a></h3>
+                        <p>Create modular, maintainable components using composition patterns.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #FF6B35, #E65100);"><i class="fas fa-bolt"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">LWC</span>
+                            <span class="post-read"><i class="far fa-clock"></i> 8 min</span>
+                        </div>
+                        <h3><a href="post.html">Wire Service vs Imperative Apex in LWC</a></h3>
+                        <p>When to use @wire vs imperative calls in your Lightning Web Components.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #FF6B35, #E65100);"><i class="fas fa-bolt"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">LWC</span>
+                            <span class="post-read"><i class="far fa-clock"></i> 12 min</span>
+                        </div>
+                        <h3><a href="post.html">LWC Lifecycle Hooks Deep Dive</a></h3>
+                        <p>Understand connectedCallback, renderedCallback, disconnectedCallback and more.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Category -->
+    <section class="section" id="admin">
+        <div class="container">
+            <div class="section-header" style="text-align: left;">
+                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                    <div class="category-icon" style="--accent: #2E844A; width: 50px; height: 50px; font-size: 1.2rem;">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div>
+                        <h2 style="margin-bottom: 4px;">Admin &amp; Configuration</h2>
+                        <p style="margin: 0;">Declarative development, security, and platform management</p>
+                    </div>
+                </div>
+            </div>
+            <div class="posts-grid">
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #2E844A, #1B5E20);"><i class="fas fa-cogs"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Admin</span>
+                            <span class="post-read"><i class="far fa-clock"></i> 6 min</span>
+                        </div>
+                        <h3><a href="post.html">Salesforce Security Model Explained</a></h3>
+                        <p>Deep dive into profiles, roles, OWD, sharing rules, and permission sets.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #2E844A, #1B5E20);"><i class="fas fa-cogs"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Admin</span>
+                            <span class="post-read"><i class="far fa-clock"></i> 5 min</span>
+                        </div>
+                        <h3><a href="post.html">Validation Rules: Complete Reference</a></h3>
+                        <p>How to write effective validation rules with formula examples.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #2E844A, #1B5E20);"><i class="fas fa-cogs"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Admin</span>
+                            <span class="post-read"><i class="far fa-clock"></i> 8 min</span>
+                        </div>
+                        <h3><a href="post.html">Custom Metadata Types vs Custom Settings</a></h3>
+                        <p>Understand the differences and when to use each configuration approach.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integration Category -->
+    <section class="section" id="integration" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header" style="text-align: left;">
+                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                    <div class="category-icon" style="--accent: #9050E9; width: 50px; height: 50px; font-size: 1.2rem;">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <div>
+                        <h2 style="margin-bottom: 4px;">Integration</h2>
+                        <p style="margin: 0;">Connect Salesforce with external systems and services</p>
+                    </div>
+                </div>
+            </div>
+            <div class="posts-grid">
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #9050E9, #6A1B9A);"><i class="fas fa-plug"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Integration</span>
+                            <span class="post-read"><i class="far fa-clock"></i> 12 min</span>
+                        </div>
+                        <h3><a href="post.html">REST API Integration in Salesforce</a></h3>
+                        <p>Step-by-step guide to REST callouts, named credentials, and connected apps.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #9050E9, #6A1B9A);"><i class="fas fa-plug"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Integration</span>
+                            <span class="post-read"><i class="far fa-clock"></i> 9 min</span>
+                        </div>
+                        <h3><a href="post.html">Platform Events: Real-Time Integration</a></h3>
+                        <p>Publish and subscribe to events for event-driven architecture in Salesforce.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #9050E9, #6A1B9A);"><i class="fas fa-plug"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Integration</span>
+                            <span class="post-read"><i class="far fa-clock"></i> 11 min</span>
+                        </div>
+                        <h3><a href="post.html">Named Credentials &amp; External Services</a></h3>
+                        <p>Simplify authentication and external system connections with named credentials.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flows Category -->
+    <section class="section" id="flows">
+        <div class="container">
+            <div class="section-header" style="text-align: left;">
+                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                    <div class="category-icon" style="--accent: #DD7A01; width: 50px; height: 50px; font-size: 1.2rem;">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div>
+                        <h2 style="margin-bottom: 4px;">Flows &amp; Automation</h2>
+                        <p style="margin: 0;">Automate business processes with clicks, not code</p>
+                    </div>
+                </div>
+            </div>
+            <div class="posts-grid">
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #DD7A01, #E65100);"><i class="fas fa-project-diagram"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Flows</span>
+                            <span class="post-read"><i class="far fa-clock"></i> 7 min</span>
+                        </div>
+                        <h3><a href="post.html">Record-Triggered Flows: Before vs After Save</a></h3>
+                        <p>When to use before-save vs after-save flows for optimal performance.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #DD7A01, #E65100);"><i class="fas fa-project-diagram"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Flows</span>
+                            <span class="post-read"><i class="far fa-clock"></i> 9 min</span>
+                        </div>
+                        <h3><a href="post.html">Screen Flows: Building Interactive User Experiences</a></h3>
+                        <p>Design guided user experiences with screen flows and custom components.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #DD7A01, #E65100);"><i class="fas fa-project-diagram"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Flows</span>
+                            <span class="post-read"><i class="far fa-clock"></i> 6 min</span>
+                        </div>
+                        <h3><a href="post.html">Migrating from Process Builder to Flows</a></h3>
+                        <p>Step-by-step migration guide from Process Builder to record-triggered flows.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interview Category -->
+    <section class="section" id="interview" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header" style="text-align: left;">
+                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                    <div class="category-icon" style="--accent: #E3066A; width: 50px; height: 50px; font-size: 1.2rem;">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div>
+                        <h2 style="margin-bottom: 4px;">Interview Preparation</h2>
+                        <p style="margin: 0;">Ace your next Salesforce interview with confidence</p>
+                    </div>
+                </div>
+            </div>
+            <div class="posts-grid">
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #E3066A, #AD1457);"><i class="fas fa-user-tie"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Interview</span>
+                            <span class="post-read"><i class="far fa-clock"></i> 15 min</span>
+                        </div>
+                        <h3><a href="post.html">Top 30 Salesforce Developer Interview Questions</a></h3>
+                        <p>Commonly asked questions with detailed answers for developer roles.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #E3066A, #AD1457);"><i class="fas fa-user-tie"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Interview</span>
+                            <span class="post-read"><i class="far fa-clock"></i> 12 min</span>
+                        </div>
+                        <h3><a href="post.html">Scenario-Based Salesforce Interview Questions</a></h3>
+                        <p>Real-world scenario questions that test your problem-solving skills.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #E3066A, #AD1457);"><i class="fas fa-user-tie"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Interview</span>
+                            <span class="post-read"><i class="far fa-clock"></i> 10 min</span>
+                        </div>
+                        <h3><a href="post.html">Salesforce Admin Interview: 25 Must-Know Questions</a></h3>
+                        <p>Essential questions covering security, data management, and configuration.</p>
+                        <a href="post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo"><i class="fab fa-salesforce"></i><span>SFDC<strong>Hub</strong></span></a>
+                    <p>Your one-stop destination for Salesforce learning.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="#apex">Apex Programming</a></li>
+                        <li><a href="#lwc">Lightning Web Components</a></li>
+                        <li><a href="#admin">Admin & Configuration</a></li>
+                        <li><a href="#integration">Integration</a></li>
+                        <li><a href="#flows">Flows & Automation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://developer.salesforce.com" target="_blank" rel="noopener">Salesforce Docs</a></li>
+                        <li><a href="https://trailhead.salesforce.com" target="_blank" rel="noopener">Trailhead</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SFDC Learning Hub. All rights reserved. Not affiliated with Salesforce, Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+    <script src="js/main.js"></script>
+</body>
+</html>

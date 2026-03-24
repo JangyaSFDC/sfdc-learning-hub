@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - SFDC Learning Hub</title>
+    <meta name="description" content="Learn about SFDC Learning Hub - your one-stop destination for Salesforce tutorials and resources.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <i class="fab fa-salesforce"></i>
+                    <span>SFDC<strong>Hub</strong></span>
+                </a>
+                <nav class="nav" id="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li class="dropdown">
+                            <a href="categories.html" class="nav-link">Categories <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="categories.html#apex">Apex</a></li>
+                                <li><a href="categories.html#lwc">Lightning Web Components</a></li>
+                                <li><a href="categories.html#admin">Admin</a></li>
+                                <li><a href="categories.html#integration">Integration</a></li>
+                                <li><a href="categories.html#flows">Flows</a></li>
+                                <li><a href="categories.html#interview">Interview Prep</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="blog.html" class="nav-link">Blog</a></li>
+                        <li><a href="about.html" class="nav-link active">About</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="search-toggle" id="searchToggle" aria-label="Toggle search"><i class="fas fa-search"></i></button>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+                    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+                </div>
+            </div>
+            <div class="search-bar" id="searchBar">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search tutorials, guides, tips..." id="searchInput">
+                    <button class="search-close" id="searchClose"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About <span class="gradient-text">SFDC Learning Hub</span></h1>
+            <p>Empowering Salesforce professionals with quality tutorials and practical guides</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <h2>Our Mission</h2>
+        <p>SFDC Learning Hub was created with a simple mission: to make Salesforce knowledge accessible to everyone. Whether you're a beginner just starting your Salesforce journey or an experienced developer looking to sharpen your skills, our platform provides comprehensive, practical, and up-to-date content.</p>
+
+        <p>We believe in learning by doing. That's why every tutorial includes real-world examples, code snippets you can use in your projects, and best practices that reflect industry standards.</p>
+
+        <h2>What We Cover</h2>
+
+        <div class="about-features">
+            <div class="about-feature">
+                <i class="fas fa-code"></i>
+                <h3>Apex Development</h3>
+                <p>Triggers, batch processing, queueable apex, test classes, design patterns, and governor limits.</p>
+            </div>
+            <div class="about-feature">
+                <i class="fas fa-bolt"></i>
+                <h3>Lightning Web Components</h3>
+                <p>Component architecture, wire services, events, SLDS integration, and performance optimization.</p>
+            </div>
+            <div class="about-feature">
+                <i class="fas fa-cogs"></i>
+                <h3>Admin & Configuration</h3>
+                <p>Security model, data management, declarative automation, reports, and dashboards.</p>
+            </div>
+            <div class="about-feature">
+                <i class="fas fa-plug"></i>
+                <h3>Integration</h3>
+                <p>REST/SOAP APIs, platform events, change data capture, external services, and middleware.</p>
+            </div>
+            <div class="about-feature">
+                <i class="fas fa-project-diagram"></i>
+                <h3>Flows & Automation</h3>
+                <p>Screen flows, record-triggered flows, scheduled flows, and automation best practices.</p>
+            </div>
+            <div class="about-feature">
+                <i class="fas fa-user-tie"></i>
+                <h3>Interview Preparation</h3>
+                <p>Commonly asked questions, scenario-based problems, and tips for Salesforce interviews.</p>
+            </div>
+        </div>
+
+        <h2>Why Choose Us?</h2>
+        <p>There are many Salesforce learning resources available, but here's what sets us apart:</p>
+
+        <ul style="padding-left: 24px; margin: 16px 0;">
+            <li style="list-style: disc; margin-bottom: 10px; color: var(--text-secondary); line-height: 1.7;"><strong>Practical Focus</strong> &mdash; Every article is designed with real-world application in mind</li>
+            <li style="list-style: disc; margin-bottom: 10px; color: var(--text-secondary); line-height: 1.7;"><strong>Up-to-Date Content</strong> &mdash; We keep our tutorials current with the latest Salesforce releases</li>
+            <li style="list-style: disc; margin-bottom: 10px; color: var(--text-secondary); line-height: 1.7;"><strong>Beginner Friendly</strong> &mdash; Complex concepts are explained in simple, easy-to-understand language</li>
+            <li style="list-style: disc; margin-bottom: 10px; color: var(--text-secondary); line-height: 1.7;"><strong>Code Examples</strong> &mdash; Copy-paste ready code snippets that follow Salesforce best practices</li>
+            <li style="list-style: disc; margin-bottom: 10px; color: var(--text-secondary); line-height: 1.7;"><strong>Free Access</strong> &mdash; All our content is freely available with no paywalls</li>
+        </ul>
+
+        <h2>Get In Touch</h2>
+        <p>Have a topic you'd like us to cover? Found an issue with one of our tutorials? We'd love to hear from you! Reach out through our social media channels or drop us a message.</p>
+
+        <div class="social-links" style="margin-top: 20px;">
+            <a href="#" aria-label="Twitter" style="width: 44px; height: 44px; border-radius: 8px; background: var(--bg-secondary); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; color: var(--text-muted);"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn" style="width: 44px; height: 44px; border-radius: 8px; background: var(--bg-secondary); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; color: var(--text-muted);"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="GitHub" style="width: 44px; height: 44px; border-radius: 8px; background: var(--bg-secondary); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; color: var(--text-muted);"><i class="fab fa-github"></i></a>
+            <a href="#" aria-label="YouTube" style="width: 44px; height: 44px; border-radius: 8px; background: var(--bg-secondary); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; color: var(--text-muted);"><i class="fab fa-youtube"></i></a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo"><i class="fab fa-salesforce"></i><span>SFDC<strong>Hub</strong></span></a>
+                    <p>Your one-stop destination for Salesforce learning.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="categories.html#apex">Apex Programming</a></li>
+                        <li><a href="categories.html#lwc">Lightning Web Components</a></li>
+                        <li><a href="categories.html#admin">Admin & Configuration</a></li>
+                        <li><a href="categories.html#integration">Integration</a></li>
+                        <li><a href="categories.html#flows">Flows & Automation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://developer.salesforce.com" target="_blank" rel="noopener">Salesforce Docs</a></li>
+                        <li><a href="https://trailhead.salesforce.com" target="_blank" rel="noopener">Trailhead</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SFDC Learning Hub. All rights reserved. Not affiliated with Salesforce, Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+    <script src="js/main.js"></script>
+</body>
+</html>
