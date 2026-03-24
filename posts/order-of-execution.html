@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remember Order of Execution Like a Pro - SFDC Learning Hub</title>
+    <meta name="description" content="Master the Salesforce Order of Execution with a simple mnemonic trick — Very Angry Admin Work Pretty Efficiently. Never forget the sequence again!">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <i class="fab fa-salesforce"></i>
+                    <span>SFDC<strong>Hub</strong></span>
+                </a>
+                <nav class="nav" id="nav">
+                    <ul class="nav-list">
+                        <li><a href="../index.html" class="nav-link">Home</a></li>
+                        <li class="dropdown">
+                            <a href="../categories.html" class="nav-link">Categories <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="../categories.html#apex">Apex</a></li>
+                                <li><a href="../categories.html#lwc">Lightning Web Components</a></li>
+                                <li><a href="../categories.html#admin">Admin</a></li>
+                                <li><a href="../categories.html#integration">Integration</a></li>
+                                <li><a href="../categories.html#flows">Flows</a></li>
+                                <li><a href="../categories.html#interview">Interview Prep</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="../blog.html" class="nav-link">Blog</a></li>
+                        <li><a href="../about.html" class="nav-link">About</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="search-toggle" id="searchToggle" aria-label="Toggle search"><i class="fas fa-search"></i></button>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+                    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+                </div>
+            </div>
+            <div class="search-bar" id="searchBar">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search tutorials, guides, tips..." id="searchInput">
+                    <button class="search-close" id="searchClose"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Hero -->
+    <section class="post-hero">
+        <div class="container">
+            <div class="post-hero-content">
+                <nav class="breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="../blog.html">Blog</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="../categories.html#admin">Admin</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Order of Execution</span>
+                </nav>
+                <div class="post-meta" style="margin-bottom: 16px;">
+                    <span class="post-category">Admin</span>
+                    <span class="post-read"><i class="far fa-clock"></i> 6 min read</span>
+                </div>
+                <h1>Remember Order of Execution Like a Pro</h1>
+                <div class="post-author" style="margin-top: 24px;">
+                    <div class="author-avatar">SH</div>
+                    <div class="author-info">
+                        <div class="name">SFDC Hub Team</div>
+                        <div class="date">Published on March 24, 2026</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Post Body -->
+    <section class="post-body">
+
+        <h2>What is Order of Execution?</h2>
+        <p>When a record is saved in Salesforce (Insert or Update), Salesforce doesn't just save it directly. It runs through a specific <strong>sequence of operations</strong> in a defined order. This is called the <strong>Order of Execution</strong>. Understanding this sequence is critical for both Admins and Developers &mdash; it's one of the most asked interview questions!</p>
+
+        <blockquote>
+            <p>Use this mnemonic to remember: <strong>&ldquo;Very Angry Admin Work Pretty Efficiently&rdquo;</strong></p>
+        </blockquote>
+
+        <h2>The Complete Order of Execution</h2>
+
+        <h3>1. Prepare the Record</h3>
+        <p>Salesforce loads the original record from the database (for updates) or initializes a new record (for inserts) and prepares it for processing.</p>
+
+        <h3>2. <strong>V</strong>ery &rarr; System Validation Rules</h3>
+        <p>System-level validations run first &mdash; these are built-in checks like required fields, field formats, and field-length validation. You can't customize these; Salesforce handles them automatically.</p>
+
+        <h3>3. Before Triggers Execute</h3>
+        <p>All <code>before insert</code> and <code>before update</code> triggers fire. This is where developers can modify field values on the record <strong>before</strong> it's saved, without needing an extra DML operation.</p>
+
+        <h3>4. Custom Validation Rules</h3>
+        <p>Your custom validation rules run next. If any rule fails, Salesforce throws an error and stops the save process.</p>
+
+        <h3>5. Record Gets Saved Temporarily</h3>
+        <p>The record is saved to the database <strong>temporarily</strong> (not committed yet). The record now has an Id if it was a new insert.</p>
+
+        <h3>6. After Triggers Execute</h3>
+        <p>All <code>after insert</code> and <code>after update</code> triggers fire. The record is read-only in after triggers. Use these to update <em>related</em> records or perform cross-object logic.</p>
+
+        <h3>7. <strong>A</strong>ngry &rarr; Assignment Rules</h3>
+        <p>Assignment rules execute (e.g., Lead Assignment Rules, Case Assignment Rules) to automatically assign records to the right owner or queue.</p>
+
+        <h3>8. <strong>A</strong>dmin &rarr; Auto-Response Rules</h3>
+        <p>Auto-response rules fire next (e.g., automatic email responses for Web-to-Case or Web-to-Lead submissions).</p>
+
+        <h3>9. <strong>W</strong>ork &rarr; Workflow Rules</h3>
+        <p>Workflow rules evaluate and execute their actions. This is important:</p>
+        <ul>
+            <li>If a workflow has a <strong>field update</strong>, it modifies the record</li>
+            <li>That field update causes <strong>before and after triggers to fire again!</strong></li>
+            <li>However, Salesforce prevents infinite loops &mdash; workflow rules won't re-evaluate a second time</li>
+        </ul>
+
+        <h3>10. <strong>P</strong>retty &rarr; Process Builder</h3>
+        <p>Process Builder processes execute. They can also trigger:</p>
+        <ul>
+            <li><strong>Roll-up Summary</strong> field recalculations</li>
+            <li><strong>Grandparent Roll-up Summary</strong> recalculations (cross-object summaries)</li>
+        </ul>
+
+        <h3>11. <strong>E</strong>fficiently &rarr; Escalation Rules</h3>
+        <p>Escalation rules evaluate, along with:</p>
+        <ul>
+            <li><strong>Criteria-based sharing rules</strong> &mdash; re-evaluate to grant/revoke record access</li>
+        </ul>
+
+        <h3>12. Record Gets Saved to Database</h3>
+        <p>The record is <strong>committed</strong> to the database. It's now permanently saved.</p>
+
+        <h3>13. After Commit Logic</h3>
+        <p>Post-commit operations execute, such as:</p>
+        <ul>
+            <li>Sending <strong>email notifications</strong></li>
+            <li>Executing <strong>outbound messages</strong></li>
+            <li>Enqueuing <strong>async Apex</strong> (future methods, queueable)</li>
+        </ul>
+
+        <h2>The Mnemonic &mdash; Remember It Forever</h2>
+        <p>Map each word to the execution step:</p>
+
+        <pre><code>V - Very        &rarr; System Validation Rules
+A - Angry       &rarr; Assignment Rules
+A - Admin       &rarr; Auto-Response Rules
+W - Work        &rarr; Workflow Rules (+ field update re-triggers!)
+P - Pretty      &rarr; Process Builder (+ Roll-up Summaries)
+E - Efficiently &rarr; Escalation Rules (+ Sharing Rules)</code></pre>
+
+        <p>Full sequence at a glance:</p>
+
+        <pre><code>1.  Prepare record for Insert/Update
+2.  System Validation Rules
+3.  Before Triggers
+4.  Custom Validation Rules
+5.  Record saved temporarily (gets Id)
+6.  After Triggers
+7.  Assignment Rules
+8.  Auto-Response Rules
+9.  Workflow Rules (field update &rarr; re-fires triggers)
+10. Process Builder &amp; Roll-up Summaries
+11. Escalation Rules &amp; Criteria-Based Sharing Rules
+12. Record committed to Database
+13. Post-commit: Emails, Outbound Messages, Async Apex</code></pre>
+
+        <h2>Real-World Example</h2>
+        <p>Let's trace what happens with a practical scenario:</p>
+
+        <blockquote>
+            <p><strong>Scenario:</strong> An Opportunity has Amount = 100. A Validation Rule fires if Amount &lt; 1000. A Workflow Rule checks if Amount &gt; 1000 and updates Amount to 100.</p>
+        </blockquote>
+
+        <ol>
+            <li>User sets Opportunity Amount = <strong>100</strong></li>
+            <li>Validation Rule checks: Amount &lt; 1000? &rarr; <strong>Yes! Error fires</strong>, record is not saved</li>
+            <li>User fixes it, sets Amount = <strong>1500</strong></li>
+            <li>Validation Rule checks: Amount &lt; 1000? &rarr; No, passes</li>
+            <li>Record is saved temporarily</li>
+            <li>Workflow Rule checks: Amount &gt; 1000? &rarr; <strong>Yes!</strong> Updates Amount to <strong>100</strong></li>
+            <li>Field update causes triggers to re-fire</li>
+            <li>But Validation Rules do <strong>NOT</strong> re-evaluate on workflow field updates</li>
+            <li>Final saved Amount = <strong>100</strong></li>
+        </ol>
+
+        <p>This is a classic gotcha &mdash; the workflow can set a value that would normally fail validation, because validation rules don't re-run after workflow field updates!</p>
+
+        <h2>Key Takeaways</h2>
+        <ul>
+            <li><strong>Before triggers</strong> run before validation rules can modify field values</li>
+            <li><strong>Workflow field updates</strong> re-trigger before and after triggers (but not workflow rules again)</li>
+            <li><strong>Validation rules don't re-evaluate</strong> after workflow field updates &mdash; this is a common interview trick question</li>
+            <li><strong>Record is committed</strong> only after all automation completes</li>
+            <li><strong>Emails are sent after commit</strong> &mdash; so if the transaction rolls back, no emails go out</li>
+            <li>Use <strong>&ldquo;Very Angry Admin Work Pretty Efficiently&rdquo;</strong> to ace your interviews!</li>
+        </ul>
+
+        <!-- Tags -->
+        <div class="post-tags">
+            <a href="#">Admin</a>
+            <a href="#">Order of Execution</a>
+            <a href="#">Validation Rules</a>
+            <a href="#">Workflow Rules</a>
+            <a href="#">Triggers</a>
+            <a href="#">Interview Prep</a>
+        </div>
+    </section>
+
+    <!-- Related Posts -->
+    <section class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Related <span class="gradient-text">Articles</span></h2>
+            </div>
+            <div class="posts-grid">
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-cog"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Apex</span>
+                            <span class="post-date"><i class="far fa-calendar"></i> Mar 24, 2026</span>
+                        </div>
+                        <h3><a href="trigger-implementation-step-by-step.html">Breaking Trigger Implementation Step by Step</a></h3>
+                        <p>Design triggers the smart way with a real-world step-by-step approach.</p>
+                        <a href="trigger-implementation-step-by-step.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-code"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Apex</span>
+                            <span class="post-date"><i class="far fa-calendar"></i> Mar 20, 2026</span>
+                        </div>
+                        <h3><a href="../post.html">Understanding Apex Triggers: A Complete Guide</a></h3>
+                        <p>Learn everything about Apex triggers from basic concepts to advanced patterns.</p>
+                        <a href="../post.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-image-placeholder" style="--bg: linear-gradient(135deg, #1B96FF, #0D47A1);"><i class="fas fa-database"></i></div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Apex</span>
+                            <span class="post-date"><i class="far fa-calendar"></i> Mar 24, 2026</span>
+                        </div>
+                        <h3><a href="soql-best-practices.html">SOQL Best Practices & Query Optimization</a></h3>
+                        <p>Master SOQL queries with best practices for performance optimization.</p>
+                        <a href="soql-best-practices.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo"><i class="fab fa-salesforce"></i><span>SFDC<strong>Hub</strong></span></a>
+                    <p>Your one-stop destination for Salesforce learning.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="../categories.html#apex">Apex Programming</a></li>
+                        <li><a href="../categories.html#lwc">Lightning Web Components</a></li>
+                        <li><a href="../categories.html#admin">Admin & Configuration</a></li>
+                        <li><a href="../categories.html#integration">Integration</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../blog.html">Blog</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://developer.salesforce.com" target="_blank" rel="noopener">Salesforce Docs</a></li>
+                        <li><a href="https://trailhead.salesforce.com" target="_blank" rel="noopener">Trailhead</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SFDC Learning Hub. All rights reserved. Not affiliated with Salesforce, Inc.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
+</body>
+</html>
